@@ -14,14 +14,17 @@ const uploadOnCloudinary = async (localPathFile) => {
     const responce = await cloudinary.uploader.upload(localPathFile, {
       resource_type: "auto",
     });
-    console.log("file uploaded successfully on cloudinary", responce.url);
+    // console.log("file uploaded successfully on cloudinary", responce.url);
+    // fs.unlinkSync(localPathFile)
+    // await fs.unlink(localPathFile);
     return responce;
   } catch (error) {
     fs.unlinkSync(localPathFile); // remove the localy saved temporary file as the upload operation got failed
   }
 };
 
-cloudinary.v2.uploader.upload(
+// cloudinary.v2.uploader.upload
+uploadOnCloudinary(
   "https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
   { public_id: "olympic_flag" },
   function (error, result) {
