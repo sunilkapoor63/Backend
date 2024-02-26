@@ -149,7 +149,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     {
       // which field we have to update
       $set: {
-        refreshToken: undefined,
+        refreshToken: 1, // this remove the field from the document
       },
     },
     {
@@ -292,7 +292,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "Avatar image updated successfully"));
 });
 
-const updateUserCoverImage = yncHandler(async (req, res) => {
+const updateUserCoverImage = asyncHandler(async (req, res) => {
   const coverImageLocalPath = req.file?.path;
 
   if (!coverImageLocalPath) {
